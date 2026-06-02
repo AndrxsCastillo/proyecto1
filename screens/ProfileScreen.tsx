@@ -21,13 +21,13 @@ export default function ProfileScreen() {
 
       <View style={styles.tarjeta}>
         <Image
-          source={{ uri: 'https://i.pravatar.cc/300' }}
+          source={require('../assets/foto.jpg')}
           style={styles.avatar}
         />
 
         <View style={styles.badgeContainer}>
           <Image
-            source={require('../assets/foto.jpg')}
+            source={{ uri: 'https://i.pravatar.cc/300' }}
             style={styles.iconLocal}
           />
           <Text style={styles.badgeTexto}>Estudiante Verificado</Text>

@@ -6,7 +6,7 @@ const proyecto = {
   nombre: "VibeBloom",
   version: "1.0.0",
   descripcion: "Plataforma digital enfocada en el descubrimiento de lugares con identidad visual, estética y atmósfera única.",
-  repositorio: "github.com/usuario/mi-proyecto",
+  repositorio: "https://github.com/AndrxsCastillo/ProyectoMacuinFinal",
   activo: true,
 };
 
@@ -25,7 +25,7 @@ export default function ProjectScreen() {
 
       <View style={styles.contenedor}>
 
-        <Text style={styles.seccionTitulo}>📋 Campos individuales</Text>
+        <Text style={styles.seccionTitulo}>Campos individuales</Text>
         <View style={styles.tarjeta}>
           <Campo etiqueta="Nombre"      valor={proyecto.nombre} />
           <Campo etiqueta="Versión"     valor={proyecto.version} />
