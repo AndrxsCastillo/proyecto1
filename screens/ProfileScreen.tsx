@@ -2,13 +2,16 @@ import React from 'react';
 import { StyleSheet, Text, View, Image, ScrollView } from 'react-native';
 import { StatusBar } from 'expo-status-bar';
 
+// Tipos de datos requeridos
 const nombre: string = "César Andrés Castillo de Lira";
 const carrera: string = "Ing. en Sistemas Computacionales";
 const cuatrimestre: number = 9;
 const promedio: number = 9.2;
 const titulado: boolean = false;
+const certificacion: string | null = null;
 
-export default function PerfilScreen() {
+
+export default function ProfileScreen() {
   return (
     <ScrollView contentContainerStyle={styles.scroll}>
 
@@ -18,9 +21,17 @@ export default function PerfilScreen() {
 
       <View style={styles.tarjeta}>
         <Image
-          source={require('../assets/foto.jpg')} // o tu url
+          source={{ uri: 'https://i.pravatar.cc/300' }}
           style={styles.avatar}
         />
+
+        <View style={styles.badgeContainer}>
+          <Image
+            source={require('../assets/foto.jpg')}
+            style={styles.iconLocal}
+          />
+          <Text style={styles.badgeTexto}>Estudiante Verificado</Text>
+        </View>
 
         <Text style={styles.nombre}>{nombre}</Text>
         <Text style={styles.carrera}>{carrera}</Text>
@@ -28,23 +39,38 @@ export default function PerfilScreen() {
         <View style={styles.divisor} />
 
         <View style={styles.datosContainer}>
-          <View style={styles.datoFila}>
-            <Text style={styles.datoEtiqueta}>📚 Cuatrimestre</Text>
-            <Text style={styles.datoValor}>{cuatrimestre}</Text>
-          </View>
-          <View style={styles.datoFila}>
-            <Text style={styles.datoEtiqueta}>⭐ Promedio</Text>
-            <Text style={styles.datoValor}>{promedio}</Text>
-          </View>
-          <View style={styles.datoFila}>
-            <Text style={styles.datoEtiqueta}>🎓 Titulado</Text>
-            <Text style={styles.datoValor}>{String(titulado)}</Text>
-          </View>
+          <FilaDato etiqueta="📚 Cuatrimestre" valor={String(cuatrimestre)} />
+          <FilaDato etiqueta="⭐ Promedio" valor={String(promedio)} />
+          <FilaDato etiqueta="🎓 Titulado" valor={String(titulado)} />
+          <FilaDato
+            etiqueta="📜 Certificación"
+            valor={certificacion ?? 'Sin asignar'}
+            esNulo={certificacion === null}
+          />
         </View>
+
       </View>
 
       <StatusBar style="light" />
     </ScrollView>
+  );
+}
+
+// Componente reutilizable
+function FilaDato({
+  etiqueta,
+  valor,
+  esNulo = false,
+}: {
+  etiqueta: string;
+  valor: string;
+  esNulo?: boolean;
+}) {
+  return (
+    <View style={styles.fila}>
+      <Text style={styles.etiqueta}>{etiqueta}</Text>
+      <Text style={[styles.valor, esNulo && styles.valorNulo]}>{valor}</Text>
+    </View>
   );
 }
 
@@ -88,8 +114,28 @@ const styles = StyleSheet.create({
     borderRadius: 60,
     borderWidth: 4,
     borderColor: '#3b82f6',
-    marginBottom: 16,
     marginTop: -60,
+    marginBottom: 12,
+  },
+  badgeContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    backgroundColor: '#eff6ff',
+    borderRadius: 20,
+    paddingHorizontal: 12,
+    paddingVertical: 5,
+    marginBottom: 14,
+  },
+  iconLocal: {
+    width: 18,
+    height: 18,
+    borderRadius: 4,
+    marginRight: 6,
+  },
+  badgeTexto: {
+    fontSize: 12,
+    color: '#3b82f6',
+    fontWeight: '600',
   },
   nombre: {
     fontSize: 22,
@@ -107,25 +153,17 @@ const styles = StyleSheet.create({
     width: '100%',
     height: 1,
     backgroundColor: '#e2e8f0',
-    marginBottom: 20,
+    marginBottom: 16,
   },
-  datosContainer: {
-    width: '100%',
-  },
-  datoFila: {
+  datosContainer: { width: '100%' },
+  fila: {
     flexDirection: 'row',
     justifyContent: 'space-between',
-    paddingVertical: 8,
+    paddingVertical: 10,
     borderBottomWidth: 1,
     borderBottomColor: '#f1f5f9',
   },
-  datoEtiqueta: {
-    fontSize: 15,
-    color: '#475569',
-  },
-  datoValor: {
-    fontSize: 15,
-    fontWeight: '600',
-    color: '#3b82f6',
-  },
+  etiqueta: { fontSize: 15, color: '#475569' },
+  valor:    { fontSize: 15, fontWeight: '600', color: '#3b82f6' },
+  valorNulo:{ color: '#94a3b8', fontStyle: 'italic' },
 });
