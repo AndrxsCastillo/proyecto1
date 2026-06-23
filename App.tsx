@@ -55,3 +55,10 @@ export default function App() {
     </NavigationContainer>
   );
 }
+
+// REFLEXIÓN ENTREGA
+
+// Los Custom Hooks permiten separar la lógica de negocio de la UI. Sin el hook, HomeScreen tendría que manejar useState,
+// useEffect y la búsqueda de artesanos directamente, mezclando responsabilidades. Con el hook, la pantalla solo se preocupa
+//  por mostrar datos, y el hook por obtenerlos. Esto hace el código más reutilizable (cualquier otra pantalla puede usar
+//  useProductos()) y más fácil de mantener (cambiar la fuente de datos solo requiere modificar el hook).
