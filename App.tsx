@@ -3,9 +3,13 @@ import { Text } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 
-import ProfileScreen from './screens/ProfileScreen';
-import SkillsScreen from './screens/SkillsScreen';
-import ProjectScreen from './screens/ProjectScreen';
+// Práctica anterior — se quedan igual
+import ProfileScreen  from './screens/ProfileScreen';
+import SkillsScreen   from './screens/SkillsScreen';
+import ProjectScreen  from './screens/ProjectScreen';
+
+// Nueva práctica — Custom Hook
+import HomeScreen     from './src/screens/HomeScreen';
 
 const Tab = createBottomTabNavigator();
 
@@ -40,6 +44,12 @@ export default function App() {
           name="Proyecto"
           component={ProjectScreen}
           options={{ tabBarIcon: () => <Text style={{ fontSize: 22 }}>🚀</Text> }}
+        />
+        {/* ← Nueva pestaña para la práctica del Custom Hook */}
+        <Tab.Screen
+          name="Subasta"
+          component={HomeScreen}
+          options={{ tabBarIcon: () => <Text style={{ fontSize: 22 }}>🏺</Text> }}
         />
       </Tab.Navigator>
     </NavigationContainer>
