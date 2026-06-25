@@ -11,6 +11,10 @@ import ProjectScreen  from './screens/ProjectScreen';
 // Nueva práctica — Custom Hook
 import HomeScreen     from './src/screens/HomeScreen';
 
+// Import para SQLite
+import SQLiteScreen from './src/screens/SQLiteScreen';
+
+
 const Tab = createBottomTabNavigator();
 
 export default function App() {
@@ -50,6 +54,11 @@ export default function App() {
           name="Subasta"
           component={HomeScreen}
           options={{ tabBarIcon: () => <Text style={{ fontSize: 22 }}>🏺</Text> }}
+        />
+        <Tab.Screen
+          name="Contactos"
+          component={SQLiteScreen}
+          options={{ tabBarIcon: () => <Text style={{ fontSize: 22 }}>🗄️</Text> }}
         />
       </Tab.Navigator>
     </NavigationContainer>
